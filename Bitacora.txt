@@ -1,0 +1,8 @@
+Bitacora inicio 31/03/2025
+Este documento servira para dejar rastro de las tareas con lenguaje natural
+
+Primero revisar que es el dataset
+	el dataset consta de noticias en cada txt
+	Vamos a iniciar a limpiar los datos, y tokenizarlos para poder crear mejor el dataset
+	creando una herramienta en python para esto, llamada  preprocess_bbc_dataset.py
+	
