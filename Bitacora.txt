@@ -5,4 +5,10 @@ Primero revisar que es el dataset
 	el dataset consta de noticias en cada txt
 	Vamos a iniciar a limpiar los datos, y tokenizarlos para poder crear mejor el dataset
 	creando una herramienta en python para esto, llamada  preprocess_bbc_dataset.py
+
+Bitacora 12/04/2025
+Se arreglo en .csv de cada una de las carpetas, en donde juntamos las primeras 150 palabras más
+	usadas en "News Articles" y "Summaries" en donde colocamos la frecuencia de cada una en 
+	el archivo creado "palabras_por_categoria.csv"
+	
 	
