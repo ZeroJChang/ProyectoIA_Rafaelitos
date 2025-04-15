@@ -9,6 +9,18 @@ Primero revisar que es el dataset
 Bitacora 12/04/2025
 Se arreglo en .csv de cada una de las carpetas, en donde juntamos las primeras 150 palabras más
 	usadas en "News Articles" y "Summaries" en donde colocamos la frecuencia de cada una en 
-	el archivo creado "palabras_por_categoria.csv"
+	el archivo creado "palabras_por_categoria.csv". En el código preprocess_bbc_dataset.py
+	analizamos las palabras clave por categoría.
 	
+Bitacora 14/02/2025
+Se agregaron las siguientes clases (naive_bayes.py, train_model.py y evaluate_model.py) en 
+	cada una lo que hace es el motor de inferencia. Por otra lado se modifico el código de 
+	preprocess_bbc_dataset.py para que prepare los datos brutos para el entrenamiento, 
+	limpiando el texto, eliminando stopwords, tokenizando, construyendo el vocabulario y
+	dividiendo entre en train y el test (80% / 20%)
+	naive_bayes.py:	implementa el algoritmo de naive bayes desde cero calculando la probabilidad
+	a priori 	
+	train_model.py: entrena el modelo de naive bayes por medio de los datos preprocesados 
+	evaluate_model.py: evalúa el rendimiento del modelo entrenado  
+
 	
