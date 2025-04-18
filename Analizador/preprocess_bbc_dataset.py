@@ -84,7 +84,7 @@ def generate_keywords_analysis(category_data, top_n=150):
     
     return keywords_output
 
-def prepare_ml_datasets(category_data, vocab_size=2000):
+def prepare_ml_datasets(category_data, vocab_size=5000):
     """Prepara los datasets para machine learning"""
     # Crear documentos artificiales (100 palabras por documento)
     documents = []
@@ -99,7 +99,8 @@ def prepare_ml_datasets(category_data, vocab_size=2000):
     features = []
     vocab_set = set(vocabulary)
     for words, category in documents:
-        features.append(({word: 1 if word in vocab_set else 0 for word in vocabulary}, category))
+        word_counts = Counter(words)
+        features.append(({word: word_counts[word] for word in vocabulary}, category))
     
     # Dividir en train/test manteniendo proporción por categoría
     random.shuffle(features)
@@ -142,11 +143,6 @@ def save_ml_datasets(vocabulary, train_set, test_set):
         f.write("\n".join(vocabulary))
 
 def main():
-    print("=== PROCESAMIENTO DE DATOS BBC NEWS ===")
-    print("Objetivos:")
-    print("1. Generar análisis de palabras clave")
-    print("2. Preparar datasets para entrenamiento del modelo\n")
-    
     # Paso 1: Procesar archivos
     print("Procesando News Articles...")
     news_data = process_category_files(NEWS_PATH, CATEGORIES)

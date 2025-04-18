@@ -12,7 +12,7 @@ Se arreglo en .csv de cada una de las carpetas, en donde juntamos las primeras 1
 	el archivo creado "palabras_por_categoria.csv". En el código preprocess_bbc_dataset.py
 	analizamos las palabras clave por categoría.
 	
-Bitacora 14/02/2025
+Bitacora 14/04/2025
 Se agregaron las siguientes clases (naive_bayes.py, train_model.py y evaluate_model.py) en 
 	cada una lo que hace es el motor de inferencia. Por otra lado se modifico el código de 
 	preprocess_bbc_dataset.py para que prepare los datos brutos para el entrenamiento, 
@@ -22,5 +22,15 @@ Se agregaron las siguientes clases (naive_bayes.py, train_model.py y evaluate_mo
 	a priori 	
 	train_model.py: entrena el modelo de naive bayes por medio de los datos preprocesados 
 	evaluate_model.py: evalúa el rendimiento del modelo entrenado  
+
+Bitacora 16/04/2025
+
+Bitacora 16/04/2025
+Se hicieron cambios en el train_model.py ya que cuando se generaba el evaluate_model daba un porcentaje 	únicamente en tech, por lo que se tuvo que mejorar el modelo y se agregaron de 2000 a 5000 	palabras para analizar y también se agrego que por categoría y cada palabra indicando entre 0 y 	1 si este ultimo si esta en esa categoría.  
+
+Bitacora 17/04/2025
+Se agrego el app.py y lo que tienen es la aplicación flask para que se conecte con el react que es 	nuestro frontend, por lo tanto se hizo la llamada utilizando cors ya que uno esta en el puerto 3	000 y el otro en el puerto 5000 así se puede comunicar simultáneamente.
+
+
 
 	

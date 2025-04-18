@@ -5,9 +5,33 @@ import groupImage from "./assets/group-photo.png"; // asegúrate de colocar tu i
 function App() {
   const [news, setNews] = useState("");
 
-  const handleVerify = () => {
-    alert(`News submitted: ${news}`);
-  };
+const handleVerify = async () => {
+  if (!news.trim()) {
+    alert("Please enter some news text.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/classify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: news }),
+    });
+
+    const data = await response.json();
+    if (data.category) {
+      alert(`Category predicted: ${data.category}`);
+    } else {
+      alert("Error: " + data.error);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Failed to connect to the backend.");
+  }
+};
+
 
   return (
     <div className="container">
