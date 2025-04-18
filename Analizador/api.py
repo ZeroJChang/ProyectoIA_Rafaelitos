@@ -26,33 +26,41 @@ def preprocess_text(text):
 
 @app.route('/classify', methods=['POST'])
 def classify():
+    import math
+
     data = request.get_json()
     if not data or 'text' not in data:
         return jsonify({'error': 'Se requiere texto para clasificar'}), 400
-    
+
     text = data['text']
     tokens = preprocess_text(text)
     features = {word: 1 if word in vocabulary else 0 for word in tokens}
-    
-    # Implementación directa de la predicción
-    best_class = None
-    max_log_prob = -float('inf')
-    
+
+    category_scores = {}
+
     for category in class_probs:
         log_prob = math.log(class_probs[category])
-        
         for word, count in features.items():
             if count > 0 and word in word_probs.get(category, {}):
                 log_prob += math.log(word_probs[category][word]) * count
-        
-        if log_prob > max_log_prob:
-            max_log_prob = log_prob
-            best_class = category
-    
-    return jsonify({
-        'category': best_class,
-        'status': 'success'
-    })
+        category_scores[category] = log_prob
+
+    log_sum = max(category_scores.values())
+    exp_scores = {cat: math.exp(score - log_sum) for cat, score in category_scores.items()}
+    total = sum(exp_scores.values())
+    probs = {cat: round((score / total) * 100, 2) for cat, score in exp_scores.items()}
+
+    sorted_probs = sorted(probs.items(), key=lambda x: x[1], reverse=True)
+
+    result = {
+        "categories": [
+            {"category": cat, "confidence": conf}
+            for cat, conf in sorted_probs
+        ],
+        "status": "success"
+    }
+
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True)
