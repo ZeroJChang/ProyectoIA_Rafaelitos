@@ -24,12 +24,18 @@ Se agregaron las siguientes clases (naive_bayes.py, train_model.py y evaluate_mo
 	evaluate_model.py: evalúa el rendimiento del modelo entrenado  
 
 Bitacora 16/04/2025
+Se inicio el frontend, un proyecto de react en el cual el ususario ingresa la noticia y se conecta al backend para que devuelva que tipo de noticia es
 
 Bitacora 16/04/2025
 Se hicieron cambios en el train_model.py ya que cuando se generaba el evaluate_model daba un porcentaje 	únicamente en tech, por lo que se tuvo que mejorar el modelo y se agregaron de 2000 a 5000 	palabras para analizar y también se agrego que por categoría y cada palabra indicando entre 0 y 	1 si este ultimo si esta en esa categoría.  
 
 Bitacora 17/04/2025
 Se agrego el app.py y lo que tienen es la aplicación flask para que se conecte con el react que es 	nuestro frontend, por lo tanto se hizo la llamada utilizando cors ya que uno esta en el puerto 3	000 y el otro en el puerto 5000 así se puede comunicar simultáneamente.
+	Se mejoró la visualización del front
+
+Bitacora 18/04/2025
+Se hizo la grabación y se continua con la documentacion del proyecto
+
 
 
 
