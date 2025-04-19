@@ -57,13 +57,13 @@ def print_metrics(true_labels, pred_labels, categories):
     recall = recall_score(true_labels, pred_labels, average='weighted')
     f1 = f1_score(true_labels, pred_labels, average='weighted')
     
-    print("\n=== MÉTRICAS GENERALES ===")
+    print("\n----------------MÉTRICAS GENERALES----------------")
     print(f"Precisión: {precision:.2%}")
     print(f"Recall: {recall:.2%}")
     print(f"F1-Score: {f1:.2%}")
     
     # Métricas por categoría
-    print("\n=== MÉTRICAS POR CATEGORÍA ===")
+    print("\n----------------MÉTRICAS POR CATEGORÍA----------------")
     print(f"{'Categoría':<15} {'Precisión':<10} {'Recall':<10} {'F1-Score':<10}")
     for category in categories:
         precision = precision_score(true_labels, pred_labels, labels=[category], average='micro')
@@ -89,12 +89,12 @@ def evaluate_model(true_labels, pred_labels, categories):
     recall = recall_score(true_labels, pred_labels, average='weighted', zero_division=0)
     f1 = f1_score(true_labels, pred_labels, average='weighted', zero_division=0)
     
-    print("\n=== MÉTRICAS GENERALES ===")
+    print("\n----------------MÉTRICAS GENERALES----------------")
     print(f"Precisión: {precision:.2%}")
     print(f"Recall: {recall:.2%}")
     print(f"F1-Score: {f1:.2%}")
     
-    print("\n=== MÉTRICAS POR CATEGORÍA ===")
+    print("\n----------------MÉTRICAS POR CATEGORÍA----------------")
     print(f"{'Categoría':<15} {'Precisión':<10} {'Recall':<10} {'F1-Score':<10} {'Ejemplos':<10}")
     
     for category in categories:
@@ -114,7 +114,7 @@ def evaluate_model(true_labels, pred_labels, categories):
         print(f"{category:<15} {precision_cat:<10.2%} {recall_cat:<10.2%} {f1_cat:<10.2%} {count:<10}")
 
 def main():
-    print("=== EVALUACIÓN DEL MODELO ===")
+    print("----------------EVALUACIÓN DEL MODELO----------------")
     
     try:
         # 1. Cargar modelo con verificación

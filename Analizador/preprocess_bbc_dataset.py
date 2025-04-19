@@ -5,15 +5,15 @@ import glob
 import random
 from collections import Counter, defaultdict
 
-# Configuración de rutas
+# Rutas
 NEWS_PATH = os.path.join("DataSet", "BBC News Summary", "BBC News Summary", "News Articles")
 SUMMARIES_PATH = os.path.join("DataSet", "BBC News Summary", "BBC News Summary", "Summaries")
 CATEGORIES = ["business", "entertainment", "politics", "sport", "tech"]
-TEST_SIZE = 0.2  # 20% para prueba
+TEST_SIZE = 0.2  # 20% para el test
 SEED = 42
 random.seed(SEED)
 
-# Lista completa de stopwords
+# Lista de stopwords
 STOPWORDS = {
     "a", "about", "above", "after", "again", "against", "all", "am", "an", "and",
     "any", "are", "aren't", "as", "at", "be", "because", "been", "before",
@@ -41,18 +41,15 @@ STOPWORDS = {
 
 def preprocess_text(text):
     """Preprocesamiento completo del texto"""
-    # Convertir a minúsculas
     text = text.lower()
-    
-    # Eliminar caracteres especiales y números
     text = re.sub(r'[^a-z\s]', '', text)
     
     # Tokenización y filtrado
     words = text.split()
     return [word for word in words 
-            if word not in STOPWORDS  # Eliminar stopwords
-            and len(word) > 2  # Filtrar palabras cortas
-            and word.isalpha()]  # Solo palabras alfabéticas
+            if word not in STOPWORDS 
+            and len(word) > 2  
+            and word.isalpha()] 
 
 def process_category_files(base_path, categories):
     """Procesa todos los archivos por categoría"""
@@ -74,7 +71,7 @@ def process_category_files(base_path, categories):
     return category_data
 
 def generate_keywords_analysis(category_data, top_n=150):
-    """Genera el análisis de palabras clave por categoría"""
+    """Análisis de palabras clave por categoría"""
     keywords_output = []
     
     for category, words in category_data.items():
@@ -85,8 +82,8 @@ def generate_keywords_analysis(category_data, top_n=150):
     return keywords_output
 
 def prepare_ml_datasets(category_data, vocab_size=5000):
-    """Prepara los datasets para machine learning"""
-    # Crear documentos artificiales (100 palabras por documento)
+    """Generando los dataset """
+    # Crear documentos 
     documents = []
     for category, words in category_data.items():
         documents.extend([(words[i:i+100], category) for i in range(0, len(words), 100)])
@@ -110,14 +107,12 @@ def prepare_ml_datasets(category_data, vocab_size=5000):
     return vocabulary, train_set, test_set
 
 def save_keywords_analysis(keywords_output):
-    """Guarda el análisis de palabras clave"""
     with open("palabras_por_categoria.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["Categoría", "Palabra", "Frecuencia"])
         writer.writerows(keywords_output)
 
 def save_ml_datasets(vocabulary, train_set, test_set):
-    """Guarda los datasets para ML"""
     # Crear directorio si no existe
     os.makedirs(os.path.join("Analizador", "preprocessed"), exist_ok=True)
     
@@ -143,7 +138,6 @@ def save_ml_datasets(vocabulary, train_set, test_set):
         f.write("\n".join(vocabulary))
 
 def main():
-    # Paso 1: Procesar archivos
     print("Procesando News Articles...")
     news_data = process_category_files(NEWS_PATH, CATEGORIES)
     
@@ -154,7 +148,7 @@ def main():
     combined_data = {category: news_data[category] + summaries_data[category] 
                     for category in CATEGORIES}
     
-    # Paso 2: Generar análisis de palabras clave
+    # Generar análisis de palabras clave
     print("\nGenerando análisis de palabras clave...")
     keywords_output = generate_keywords_analysis(combined_data)
     save_keywords_analysis(keywords_output)
@@ -165,9 +159,9 @@ def main():
     save_ml_datasets(vocabulary, train_set, test_set)
     
     # Resultados
-    print("\n=== ARCHIVOS GENERADOS ===")
+    print("\n----------------ARCHIVOS GENERADOS----------------")
     print("1. palabras_por_categoria.csv")
-    print("   - Top 150 palabras por categoría")
+    print("   - Top 150 palabras por categoria")
     print("2. Analizador/preprocessed/train_dataset.csv")
     print(f"   - {len(train_set)} documentos de entrenamiento")
     print("3. Analizador/preprocessed/test_dataset.csv")
