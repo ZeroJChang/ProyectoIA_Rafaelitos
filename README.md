@@ -50,6 +50,12 @@ Este proyecto implementa un sistema completo para clasificar noticias usando el 
 - **CSV y Pickle** para datos y modelos
 
 ---
+##  Requisitos técnicos
+
+- **Node.js:** Requerido para ejecutar y desarrollar el frontend. Recomendado instalar la última versión estable.
+- **npm:** Gestor de paquetes de Node.js. Se instala junto con Node.js.
+- **React:** Biblioteca principal utilizada para construir la interfaz.
+- **HTML, CSS, JavaScript moderno (ES6+):** Para la estructura, diseño y funcionalidad del frontend.
 
 ##  Evaluación del Modelo
 ![image](https://github.com/user-attachments/assets/f2dc741c-26f9-47ae-a63a-08cc2ebec4ca)
@@ -78,6 +84,20 @@ El preprocesamiento incluyó:
 ```bash
 cd Analizador
 pip install flask flask-cors
+```
+
+ Luego de ya tener los requisitos instalados se necesita descar el repositorio 
+
+ Se accede a la ruta del proyecto 
+
+###  Iniciar Motor Naïve Bayes (Backend)
+
+![image](https://github.com/user-attachments/assets/11dcd23f-21d3-4456-9a54-a2acbec613e4)
+
+ ###  Iniciar la pagina web (Frontend)
+
+![image](https://github.com/user-attachments/assets/e3c2ceaa-77dd-48ca-a94a-322a5dc21459)
+
 
 
 
