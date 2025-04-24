@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>PROYECT RAFAELITOS</h1>
+      <h1>PROJECT RAFAELITOS</h1>
       <div className="header">
         <img src={groupImage} alt="Group" className="group-photo" />
         <p className="description">
